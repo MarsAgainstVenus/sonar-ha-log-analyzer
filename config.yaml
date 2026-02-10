@@ -1,0 +1,24 @@
+name: "Sonar Log Analyzer"
+slug: "sonar_log_analyzer"
+description: "Analyzes Home Assistant error logs with Perplexity Sonar and creates a notification with suggested fixes."
+version: "0.1.0"
+arch:
+  - amd64
+  - aarch64
+  - armv7
+startup: "manual"
+init: false
+panel_icon: "mdi:robot"
+environment:
+  HA_URL: "http://supervisor/core"      # Supervisor-internal URL for HA
+options:
+  log_max_chars: 30000
+schema:
+  log_max_chars: int
+map:
+  - config:rw
+  - ssl:ro
+  - addons:ro
+  - share:rw
+# Let the add-on talk to Home Assistant's API via the Supervisor token
+homeassistant_api: true
